@@ -70,5 +70,3 @@ class BestFriend
     puts "Hey bestie, I made you a friendship bracelet. It says my name, #{@name}, so you never forget me."
   end
 end
-
-besti = BestFriend.new("Joe Shmoe", 6, nil)
