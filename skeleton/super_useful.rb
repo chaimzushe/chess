@@ -47,10 +47,12 @@ def feed_me_a_fruit
     e.message
   end
 end
-feed_me_a_fruit
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
+    raise StandardError, "What kinda best friend? we only know each other for #{yrs_known} years??" unless yrs_known >= 5
+    raise StandardError, "What kinda best friend? you dont even have a name" if !name.is_a?(String) || name.length < 1
+    raise StandardError, "What kinda best friend? You have no hobbies." if !fav_pastime.is_a?(String) || fav_pastime.length < 1
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
@@ -68,3 +70,5 @@ class BestFriend
     puts "Hey bestie, I made you a friendship bracelet. It says my name, #{@name}, so you never forget me."
   end
 end
+
+besti = BestFriend.new("Joe Shmoe", 6, nil)
