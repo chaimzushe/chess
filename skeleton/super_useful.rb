@@ -5,7 +5,7 @@ rescue ArgumentError => e
   e.message
   nil
 end
-p convert_to_int("10")
+
 
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
@@ -13,17 +13,23 @@ FRUITS = ["apple", "banana", "orange"]
 def reaction(maybe_fruit)
   if FRUITS.include? maybe_fruit
     puts "OMG, thanks so much for the #{maybe_fruit}!"
+  elsif maybe_fruit == "coffee"
+    raise StandardError
   else
     raise StandardError
   end
 end
 
 def feed_me_a_fruit
+  begin
   puts "Hello, I am a friendly monster. :)"
 
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   maybe_fruit = gets.chomp
   reaction(maybe_fruit)
+  rescue
+    retry if maybe_fruit == "coffee"
+  end
 end
 
 # PHASE 4
