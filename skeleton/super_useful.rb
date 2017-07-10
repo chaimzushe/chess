@@ -10,13 +10,26 @@ end
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
 
+class CoffeeError < StandardError
+  def message
+    puts "Thanks for the coffee! Please give me a fruit"
+  end
+end
+
+class NotFruitError < StandardError
+  def message
+    puts "Thanks, but I only want fruit. Goodbye!"
+  end
+end
+
+
 def reaction(maybe_fruit)
   if FRUITS.include? maybe_fruit
     puts "OMG, thanks so much for the #{maybe_fruit}!"
   elsif maybe_fruit == "coffee"
-    raise StandardError
+    raise CoffeeError
   else
-    raise StandardError
+    raise NotFruitError
   end
 end
 
@@ -27,11 +40,14 @@ def feed_me_a_fruit
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   maybe_fruit = gets.chomp
   reaction(maybe_fruit)
-  rescue
-    retry if maybe_fruit == "coffee"
+  rescue CoffeeError => e
+    e.message
+    retry
+  rescue NotFruitError => e
+    e.message
   end
 end
-
+feed_me_a_fruit
 # PHASE 4
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
