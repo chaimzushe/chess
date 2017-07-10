@@ -7,13 +7,17 @@ class Board
 
   def initialize
     @board = Array.new(8) { Array.new(8) }
+    make_starting_grid
   end
 
   def make_starting_grid
     start_rows = [0, 1, 6, 7]
     self.board.each_with_index do |row, idx|
-      next unless start_rows.include?(idx)
-      row.each_index { |i| row[i] = Piece.new }
+      if start_rows.include?(idx)
+        row.each_index { |i| row[i] = Piece.new('P') }
+      else
+        row.each_index { |i| row[i] = Piece.new }
+      end
     end
   end
 
@@ -47,20 +51,13 @@ class Board
 
   end
 
+  def in_bounds(pos)
+    pos.all? {|el| el.between?(0,7)}
+  end
+
 
   def find_king(color)
 
   end
 
 end
-
-
-
-
-
-board = Board.new
-board.make_starting_grid
-
-board.board.each { |row| p row }
-board.move_piece([1,1], [10,1])
-board.board.each { |row| p row }
