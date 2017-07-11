@@ -1,7 +1,7 @@
 require_relative 'piece.rb'
-class Pawn < Piece
+class NullPiece < Piece
   def initialize(pos, board, color)
     super
-    @symbol = "♙".colorize(color)
+    @symbol = " "
   end
 end

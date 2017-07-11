@@ -41,6 +41,5 @@ class Display
 
 end
 
-display = Display.new()
-
+display = Display.new
 display.render_loop

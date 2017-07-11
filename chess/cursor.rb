@@ -100,6 +100,6 @@ class Cursor
     self.cursor_pos.each_with_index do |el, i|
       new_pos[i] =  self.cursor_pos[i] + diff[i]
     end
-    self.cursor_pos = new_pos if self.board.in_bounds(new_pos)
+    self.cursor_pos = new_pos if self.board.in_bounds?(new_pos)
   end
 end

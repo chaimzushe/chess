@@ -1,4 +1,12 @@
 require_relative 'piece.rb'
+require_relative 'queen.rb'
+require_relative 'king.rb'
+require_relative 'knight.rb'
+require_relative 'bishop.rb'
+require_relative 'rook.rb'
+require_relative 'pawn.rb'
+require_relative 'null_piece.rb'
+
 require 'byebug'
 
 class Board
@@ -11,12 +19,21 @@ class Board
   end
 
   def make_starting_grid
+    back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+
     start_rows = [0, 1, 6, 7]
     self.board.each_with_index do |row, idx|
-      if start_rows.include?(idx)
-        row.each_index { |i| row[i] = Piece.new('P', self) }
+      case idx
+      when 0
+          row.each_with_index{|sqr, i| row[i] = back_row[i].new([idx, i], self, :black) }
+      when 1
+            row.each_with_index{|sqr, i| row[i] = Pawn.new([idx, i], self, :black) }
+      when 6
+          row.each_with_index{|sqr, i| row[i] = Pawn.new([idx, i], self, :white) }
+      when 7
+          row.each_with_index{|sqr, i| row[i] = back_row[i].new([idx, i], self, :white) }
       else
-        row.each_index { |i| row[i] = Piece.new("nil", self) }
+          row.each_with_index{|sqr, i| row[i] = NullPiece.new([idx, i], self, :black) }
       end
     end
   end

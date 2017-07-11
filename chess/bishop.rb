@@ -16,8 +16,3 @@ class Bishop < Piece
   end
 
 end
-
-
-board = Board.new
-bishop = Bishop.new([0,0], board)
-p bishop.moves
