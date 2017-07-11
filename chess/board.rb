@@ -14,9 +14,9 @@ class Board
     start_rows = [0, 1, 6, 7]
     self.board.each_with_index do |row, idx|
       if start_rows.include?(idx)
-        row.each_index { |i| row[i] = Piece.new('P') }
+        row.each_index { |i| row[i] = Piece.new('P', self) }
       else
-        row.each_index { |i| row[i] = Piece.new }
+        row.each_index { |i| row[i] = Piece.new("nil", self) }
       end
     end
   end
@@ -51,7 +51,7 @@ class Board
 
   end
 
-  def in_bounds(pos)
+  def in_bounds?(pos)
     pos.all? {|el| el.between?(0,7)}
   end
 
