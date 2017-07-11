@@ -6,9 +6,9 @@ class Bishop < Piece
   include SlidingPiece
 
 
-  def initialize(pos, board)
+  def initialize(pos, board, color)
     super
-    @symbol = "♝"
+    @symbol = "♗".colorize(color)
   end
 
   def moves
