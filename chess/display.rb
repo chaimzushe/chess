@@ -46,5 +46,4 @@ end
 ##############################
 
 display = Display.new
-print display.board[[1,1]].moves
-#display.render_loop
+print display.board.in_check?(:white)

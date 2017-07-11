@@ -72,9 +72,25 @@ class Board
     pos.all? {|el| el.between?(0,7)}
   end
 
+   def in_check?(color)
+    king_pos = find_king(color)
+    opp_pieces = self.board.flatten.select do |square|
+      square.color != color
+    end
+    opp_pieces.reject{|piece| piece.class == NullPiece}
+
+    opp_pieces.any? do |piece|
+      # debugger
+      piece.moves.include?(king_pos)
+    end
+   end
 
   def find_king(color)
-
+    self.board.each_with_index do |row, i1|
+      row.each_with_index do |sqr, i2|
+        return [i1, i2] if sqr.class == King && sqr.color == color
+      end
+    end
   end
 
 end

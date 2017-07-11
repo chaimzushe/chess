@@ -7,4 +7,8 @@ class NullPiece < Piece
   def initialize
     @symbol = " "
   end
+
+  def moves
+    []
+  end
 end

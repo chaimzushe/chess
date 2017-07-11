@@ -12,7 +12,6 @@ class Pawn < Piece
 
   def moves
     moves = []
-
     # if in starting position
     if (color == :black && pos[0] == 1) || (color == :white && pos[0] == 6)
       moves += [ [self.pos[0] + diff * 2, self.pos[1]] ]
