@@ -33,7 +33,7 @@ class Board
       when 7
           row.each_with_index{|sqr, i| row[i] = back_row[i].new([idx, i], self, :white) }
       else
-          row.each_with_index{|sqr, i| row[i] = NullPiece.new([idx, i], self, :black) }
+          row.each_with_index{|sqr, i| row[i] = NullPiece.instance }
       end
     end
   end
@@ -53,7 +53,7 @@ class Board
     raise ArgumentError, "There is no piece to move" if self[from_pos].nil?
     raise ArgumentError, "Position not in board" unless to_pos.all?{|i| i.between?(0,7) }
     self[to_pos] = self[from_pos]
-    self[from_pos] = nil
+    self[from_pos] = NullPiece.instance
   end
 
   def dup

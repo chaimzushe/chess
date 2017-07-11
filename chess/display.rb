@@ -41,5 +41,10 @@ class Display
 
 end
 
+
+# test code
+##############################
+
 display = Display.new
-display.render_loop
+print display.board[[1,1]].moves
+#display.render_loop

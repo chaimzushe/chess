@@ -1,7 +1,10 @@
 require_relative 'piece.rb'
+require 'Singleton'
+
 class NullPiece < Piece
-  def initialize(pos, board, color)
-    super
+  include Singleton
+
+  def initialize
     @symbol = " "
   end
 end
