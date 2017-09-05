@@ -37,17 +37,17 @@ class Display
     available_moves =  @selected_piece.moves if @selected_piece
 
     if [i, j] == cursor.cursor_pos && cursor.selected
-      bg = :light_green
-    elsif [i, j] == cursor.cursor_pos
-      bg = :light_red
-    elsif available_moves.include?([i, j])
-      bg = :green
-    elsif (i +j).odd?
-      bg = :light_blue
-    else (i +j).odd?
       bg = :light_yellow
+    elsif [i, j] == cursor.cursor_pos
+      bg = :yellow
+    elsif available_moves.include?([i, j])
+      bg = :light_blue
+    elsif (i +j).odd?
+      bg = :cyan
+    else (i +j).odd?
+      bg = :white
     end
-    @selected_piece = nil unless cursor.selected
+    @selected_piece = nil  unless cursor.selected
     {background: bg}
   end
 

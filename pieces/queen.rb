@@ -6,8 +6,11 @@ class Queen < Piece
   include SlidingPiece
 
   def symbol
-    "♕".colorize(color)
+      color == :black ?  "\u265B" : "\u2655"
   end
+
+
+
 
   def move_dirs
     horizontal_dirs + diagonal_dirs

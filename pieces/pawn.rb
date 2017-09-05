@@ -4,8 +4,10 @@ class Pawn < Piece
   attr_reader :diff
 
   def symbol
-    "♙".colorize(color)
+    color == :black ? "\u265F"  : "\u2659"
   end
+
+
 
   def moves
     forward + side_attack

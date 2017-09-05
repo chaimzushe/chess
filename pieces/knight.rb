@@ -6,8 +6,14 @@ class Knight < Piece
   include SteppingPiece
 
   def symbol
-     "♘".colorize(color)
+    color == :black ? "\u265E" : "\u2658"
   end
+
+
+
+
+
+
 
   def move_diffs
 

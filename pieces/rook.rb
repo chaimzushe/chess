@@ -5,8 +5,10 @@ class Rook < Piece
   include SlidingPiece
 
   def symbol
-    "♖".colorize(color)
+    color == :black ? "\u265C" : "\u2656"
   end
+
+
 
   def move_dirs
     horizontal_dirs

@@ -6,8 +6,10 @@ class King < Piece
   include SteppingPiece
 
   def symbol
-     "♔".colorize(color)
+    (color == :black) ? "\u265A" : "\u2654"
   end
+
+
 
 
   def move_diffs
