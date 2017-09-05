@@ -5,10 +5,14 @@ class NullPiece < Piece
   include Singleton
 
   def initialize
-    @symbol = " "
+    @color = :none
+  end
+  def symbol
+     " "
   end
 
   def moves
     []
   end
+
 end

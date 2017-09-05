@@ -1,0 +1,24 @@
+GIT
+  remote: https://github.com/deivid-rodriguez/byebug.git
+  revision: 0e572cc7931303702bec01355db4619b6282e64e
+  specs:
+    byebug (9.1.0)
+
+GIT
+  remote: https://github.com/fazibear/colorize.git
+  revision: 7c0b50a278da01870be4435ec1b5753c2544e8f3
+  specs:
+    colorize (0.8.1)
+
+GEM
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  byebug!
+  colorize!
+
+BUNDLED WITH
+   1.15.4
