@@ -58,6 +58,9 @@ class Board
     self[to_pos] = piece
     self[pos] = empty_spot
     piece.pos = to_pos
+    if piece.class == King || piece.class == Rook
+      piece.moved
+    end
     nil
   end
 
