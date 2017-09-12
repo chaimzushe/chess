@@ -13,12 +13,32 @@ class ComputerPlayer < Player
         randoms << [start_pos, end_pos]
       end
     end
-
     randoms
   end
 
   def make_move(board)
-    random_moves(board).sample
+    get_best_move(board)
+  end
+
+  def get_best_move(board)
+    all_moves = random_moves(board)
+    best_move = nil
+    best_value = -99999
+    all_moves.each do |move|
+      board_value = move_strength(move, board)
+      if board_value > best_value
+        best_value = board_value
+        best_move = move
+      end
+    end
+    best_move
+  end
+
+  def move_strength(move, board)
+    pos, end_move = move
+    test_board = board.dup
+    test_board.move_piece!(pos, end_move)
+    test_board.score(self.color)
   end
 
 end

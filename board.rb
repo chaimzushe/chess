@@ -10,7 +10,17 @@ class Board
     make_starting_grid(populate_borad)
   end
 
+  def score(color)
+    score = 0
+    pieces.select{ |p| p.color == color}.each do |p|
+      score += p.value;
+    end
 
+    pieces.reject{ |p| p.color == color}.each do |p|
+      score -= p.value;
+    end
+    score
+  end
 
   def [](pos)
     raise 'Invalid position' unless valid_pos?(pos)
