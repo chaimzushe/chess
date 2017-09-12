@@ -13,4 +13,8 @@ class Bishop < Piece
     diagonal_dirs
   end
 
+  def value 
+    30
+  end
+
 end

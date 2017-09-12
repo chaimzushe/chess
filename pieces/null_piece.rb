@@ -15,4 +15,8 @@ class NullPiece < Piece
     []
   end
 
+  def value
+    0
+  end
+
 end

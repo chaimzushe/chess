@@ -12,6 +12,10 @@ class King < Piece
   def symbol
     (color == :black) ? "\u265A" : "\u2654"
   end
+  
+  def value
+    900
+  end
 
   def moved
     @moved = true

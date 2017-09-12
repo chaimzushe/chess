@@ -9,7 +9,9 @@ class Knight < Piece
     color == :black ? "\u265E" : "\u2658"
   end
 
-
+  def value
+    30
+  end
 
 
 

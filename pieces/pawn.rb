@@ -7,6 +7,9 @@ class Pawn < Piece
     color == :black ? "\u265F"  : "\u2659"
   end
 
+  def value
+    10
+  end
 
 
   def moves

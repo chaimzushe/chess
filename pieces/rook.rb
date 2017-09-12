@@ -12,6 +12,10 @@ class Rook < Piece
     @moved = true
   end
 
+  def value
+    50
+  end
+
 
   def move_dirs
     horizontal_dirs
