@@ -31,7 +31,8 @@ class ComputerPlayer < Player
         best_move = move
       end
     end
-    best_move
+
+    best_value == 0 ? all_moves.sample : best_move
   end
 
   def move_strength(move, board)
