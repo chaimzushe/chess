@@ -1,6 +1,6 @@
 # chess
 
-Have endless fun, playing a grand game of the *all time classic* chess.
+Have endless fun, playing a grand game of the *all time classic* **Chess**.
 
 written for the command line
 
