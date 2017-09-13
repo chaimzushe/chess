@@ -1,6 +1,6 @@
 # chess
 
-Have endless fun, playing the *all time classic* game of chess.
+Have endless fun, playing a grand game of the *all time classic* chess.
 
 written for the command line
 
@@ -19,23 +19,21 @@ written for the command line
 ### how to play
 
 - navigate to the files root directory, run `ruby chess.rb` to begin the game.
-- use the arrow keys or w s a d to move the cursor.
+- use the arrow keys or 'w' 's' 'a' 'd' to move the cursor.
 - space or enter to select or drop a playing piece.
 
 
 ### Features
-- A modest ai. the computer calculates one move to choose its best move.
-- Move that are available highlighting. When Selecting a piece to move, all available moves for that specific piece will
-  be highlighted in a brighter color. This was achieved, buy checking the position of the cursor, and the piece thats sitting in that position, and fetching all its possible moves.   
+- A modest ai. the computer calculates one move ahead to choose its best move.
+- Available moves for a selected piece are  highlighting. This was achieved, by checking the position of the cursor, extracting the piece thats sitting in that position, and fetching all its possible moves.   
 
 ### Implementation
 
 
-- Uses modules to extract methods common to several types of pieces and keep the code DRY.
-i.e. queen, rook and bishop include the slidable module while knight and king include the stepping module.
+- Uses modules to extract methods common to several types of pieces. This helped keep keeping the code DRY.
+i.e. the queen, rook, and bishop classes include the slidable module. The knight and king class include the stepping module.
 
-- Loops through the boards pieces and calculates the score of the board based on each piece's value. subtracting points
-if its an opponent and adding points if it's the players pieces.
+- A point system. A method loops through the pieces on the board and assigns a score, based on each piece's value. subtracting points if its an opponents piece, and adding points if it's the current player's pieces.
 
 ```
 def score(color)
