@@ -1,9 +1,8 @@
 # chess
 
-Have endless fun, playing a grand game of the *all time classic* **Chess**.
+Have endless fun, playing a grand game of the all time classic **Chess**.
 
 written for the command line
-
 
 
 <img width="1259" alt="gchess_image" src="https://user-images.githubusercontent.com/20543351/30088684-ebac556c-9275-11e7-8529-cb7d7f006a7d.png">
@@ -25,15 +24,15 @@ written for the command line
 
 ### Features
 - A modest ai. the computer calculates one move ahead to choose its best move.
-- Available moves for a selected piece are  highlighting. This was achieved, by checking the position of the cursor, extracting the piece thats sitting in that position, and fetching all its possible moves.   
+- Available moves for a selected piece are  highlighted. This was achieved, by checking the position of the cursor, extracting the piece thats sitting in that position, and fetching all its possible moves.   
 
 ### Implementation
 
 
-- Uses modules to extract methods common to several types of pieces. This helped keep keeping the code DRY.
+- Uses modules to extract methods common to several types of pieces. This helped keeping the code DRY.
 i.e. the queen, rook, and bishop classes include the slidable module. The knight and king class include the stepping module.
 
-- A point system. A method loops through the pieces on the board and assigns a score, based on each piece's value. subtracting points if its an opponents piece, and adding points if it's the current player's pieces.
+- A point system. Achieved by writing a method that loops through the pieces on the board and assigning a score, based on each piece's value. subtracting points if its an opponents piece, and adding points if it's the current player's pieces.
 
 ```
 def score(color)
