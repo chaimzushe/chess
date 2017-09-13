@@ -1,6 +1,6 @@
 # chess
 
-Have endless fun, playing against a friend the *all time classic* game of chess.
+Have endless fun, playing the *all time classic* game of chess.
 
 written for the command line
 
@@ -18,37 +18,50 @@ written for the command line
 
 ### how to play
 
-- navigate to the files root durectory, run `ruby chess.rb` to begin th game.
+- navigate to the files root directory, run `ruby chess.rb` to begin the game.
 - use the arrow keys or w s a d to move the cursor.
 - space or enter to select or drop a playing piece.
 
 
 ### Features
-- When Selecting a piece to move all valid available moves for that piece will be displayed in color a varient color. this was acheived be
-by redrawing the board for every piece to filter out only legal moves. 
+- A modest ai. the computer calculates one move to choose its best move.
+- Move that are available highlighting. When Selecting a piece to move, all available moves for that specific piece will
+  be highlighted in a brighter color. This was achieved, buy checking the position of the cursor, and the piece thats sitting in that position, and fetching all its possible moves.   
 
 ### Implementation
 
 
-- Uses modules to extract methods common to several types of pieces and keep the code DRY. 
+- Uses modules to extract methods common to several types of pieces and keep the code DRY.
 i.e. queen, rook and bishop include the slidable module while knight and king include the stepping module.
 
-```
-  def grow_unblocked_moves_in_dir(dx, dy)
+- Loops through the boards pieces and calculates the score of the board based on each piece's value. subtracting points
+if its an opponent and adding points if it's the players pieces.
 
-    cur_x, cur_y = @pos
-    moves = []
-    while true
-      cur_x, cur_y = cur_x + dx, cur_y + dy
-      new_move = [cur_x, cur_y]
-      break unless board.valid_pos?(new_move)
-      if(board.empty?(new_move))
-        moves << new_move
-      else
-        moves << new_move if board[new_move].color != self.color
-        break
-      end
-    end
-    moves
+```
+def score(color)
+  score = 0
+  pieces.select{ |p| p.color == color}.each do |p|
+    score += p.value;
   end
+
+  pieces.reject{ |p| p.color == color}.each do |p|
+    score -= p.value;
+  end
+  score
+end
+
+
+all_moves = random_moves(board)
+  best_move = nil
+  best_value = -99999
+  all_moves.each do |move|
+    board_value = move_strength(move, board)
+    if board_value > best_value
+      best_value = board_value
+      best_move = move
+    end
+  end
+
+  best_value == 0 ? all_moves.sample : best_move
+end
   ```
