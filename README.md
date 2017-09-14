@@ -34,7 +34,7 @@ i.e. the queen, rook, and bishop classes include the slidable module. The knight
 
 - A point system. Achieved by writing a method that loops through the pieces on the board and assigning a score, based on each piece's value. subtracting points if its an opponents piece, and adding points if it's the current player's pieces.
 
-```
+```ruby
 def score(color)
   score = 0
   pieces.select{ |p| p.color == color}.each do |p|
