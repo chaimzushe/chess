@@ -92,9 +92,6 @@ class Board
      piece = self[pos]
      piece_before =  self[move]
      self[move] = piece
-     if (piece.color == :none)
-       return
-     end
      checked = self.in_check?(piece.color)
      self[pos] = piece
      self[move] = piece_before
@@ -142,7 +139,7 @@ class Board
     self.pieces.select{|p| p.color == :black }.each do |piece|
       piece.valid_moves.each do |to_pos|
         origianl_pos = piece.pos # save original position of piece
-        piece_in_spot_before = (self[to_pos].value == 0 ? empty_spot : self[to_pos]) # keep track of piece befoore atacked, to retrieve
+        piece_in_spot_before = self[to_pos]# keep track of piece befoore atacked, to retrieve
         self[to_pos] = piece # move piece to next position
         self[origianl_pos] = empty_spot # empty out the space the piece was in originaly
         piece.pos = to_pos # update the piece's position for the piece to know. why not?
@@ -167,7 +164,7 @@ class Board
 
   end
 
-  def test_redo()
+  def test_redo(pos, end_pos)
 
   end
 
@@ -179,7 +176,7 @@ class Board
         piece.valid_moves.each do |to_pos|
 
           origianl_pos = piece.pos
-          piece_in_spot_before = (self[to_pos].value == 0 ? empty_spot : self[to_pos])
+          piece_in_spot_before = self[to_pos]
           self[to_pos] = piece
           self[origianl_pos] = empty_spot
           piece.pos = to_pos
@@ -196,7 +193,7 @@ class Board
       pieces.reject{|p| p.color == :white }.each do |piece|
         piece.valid_moves.each do |to_pos|
           origianl_pos = piece.pos
-          piece_in_spot_before = (self[to_pos].value == 0 ? empty_spot : self[to_pos])
+          piece_in_spot_before = self[to_pos]
           self[to_pos] = piece
           self[origianl_pos] = empty_spot
           piece.pos = to_pos
