@@ -61,6 +61,9 @@ class Game
 end
 
 if __FILE__ == $PROGRAM_NAME
-  game =  (ARGV[0] == '-h' ? Game.new("h") : Game.new)
+  system('clear')
+  puts "Hello lets play some chess? who whould you like to play against? \n (h - for human, c - for computer) "
+  anwser = gets.chomp
+  game =  (anwser == 'h' ? Game.new("h") : Game.new )
   game.play
 end
