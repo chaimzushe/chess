@@ -6,14 +6,27 @@ require_relative 'computer_player.rb'
 class Game
   attr_reader :board, :display, :current_player, :players
 
-  def initialize
+  def initialize(play_against = 'c')
     @board =  Board.new
     @display = Display.new(@board)
-    @players =  {
+    @players = get_players(play_against)
+
+    @current_player = :white
+  end
+
+  def get_players(play_against)
+    if(play_against == 'c')
+      return {
       white: HumanPlayer.new(:white, @display),
       black: ComputerPlayer.new(:black, @display)
-    }
-    @current_player = :white
+      }
+    else
+     return {
+       white: HumanPlayer.new(:white, @display),
+       black: HumanPlayer.new(:black, @display),
+       }
+    end
+
   end
 
   def play
@@ -47,5 +60,6 @@ class Game
 end
 
 if __FILE__ == $PROGRAM_NAME
-  Game.new.play
+  game =  (ARGV[0] == '-h' ? Game.new("h") : Game.new)
+  game.play
 end

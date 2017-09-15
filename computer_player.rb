@@ -5,10 +5,8 @@ require 'byebug'
 class ComputerPlayer < Player
 
   def make_move(board)
-      display.render
-
-      move = board.minimax_root(2, true)
-      move
+    display.render
+    board.minimax_root(2, true)
   end
 
 
