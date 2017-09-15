@@ -25,13 +25,8 @@ class Piece
   end
 
   def valid_moves
-    moves.reject { |move| move_into_check?(move) }
+    moves.reject { |move| board.test_check(pos, move)}
   end
 
 
-  def move_into_check?(move)
-    test_board = board.dup
-    test_board.move_piece!(pos, move)
-    test_board.in_check?(color)
-  end
 end

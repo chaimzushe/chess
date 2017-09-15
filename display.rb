@@ -40,7 +40,7 @@ class Display
       bg = :light_yellow
     elsif [i, j] == cursor.cursor_pos
       bg = :yellow
-    elsif available_moves.include?([i, j])
+    elsif cursor.cursor_pos  && cursor.selected && available_moves.include?([i, j])
       bg = :light_blue
     elsif (i +j).odd?
       bg = :cyan

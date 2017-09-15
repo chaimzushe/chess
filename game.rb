@@ -22,7 +22,7 @@ class Game
         start_pos, end_pos = players[current_player].make_move(board)
         board.move_piece(current_player, start_pos, end_pos)
         self.switch_turns!
-    
+
       rescue StandardError => e
           @display.notifications[:errors] = e.message
       retry

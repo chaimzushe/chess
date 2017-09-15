@@ -10,17 +10,7 @@ class Board
     make_starting_grid(populate_borad)
   end
 
-  def score(color)
-    score = 0
-    pieces.select{ |p| p.color == color}.each do |p|
-      score += p.value;
-    end
 
-    pieces.reject{ |p| p.color == color}.each do |p|
-      score -= p.value;
-    end
-    score
-  end
 
   def [](pos)
     raise 'Invalid position' unless valid_pos?(pos)
@@ -98,6 +88,19 @@ class Board
      end
    end
 
+   def test_check(pos, move)
+     piece = self[pos]
+     piece_before =  self[move]
+     self[move] = piece
+     if (piece.color == :none)
+       return
+     end
+     checked = self.in_check?(piece.color)
+     self[pos] = piece
+     self[move] = piece_before
+     checked
+   end
+
 
 
    def fill_pawns(color)
@@ -130,5 +133,104 @@ class Board
        fill_first_row(color)
      end
    end
+   def minimax_root(depth, isMaximisingPlayer)
+
+    best_score = -9999
+    best_move_found = nil
+    best_piece = nil
+
+    self.pieces.select{|p| p.color == :black }.each do |piece|
+      piece.valid_moves.each do |to_pos|
+        origianl_pos = piece.pos # save original position of piece
+        piece_in_spot_before = (self[to_pos].value == 0 ? empty_spot : self[to_pos]) # keep track of piece befoore atacked, to retrieve
+        self[to_pos] = piece # move piece to next position
+        self[origianl_pos] = empty_spot # empty out the space the piece was in originaly
+        piece.pos = to_pos # update the piece's position for the piece to know. why not?
+        value = minimax(depth - 1, !isMaximisingPlayer); # recursive call
+        self[origianl_pos] = piece # move piece back to original spot
+        piece.pos =  origianl_pos # upadte the piece to know he was mov ed back
+        self[to_pos] = piece_in_spot_before  # bring back that piece that was there before
+        piece_in_spot_before.pos = to_pos # update his position. ? - maybe not needed.
+        if value >= best_score
+          best_piece = piece
+          best_score = value;
+          best_move_found = to_pos
+
+        end
+      end
+    end
+
+    [best_piece.pos, best_move_found]
+  end
+
+  def test_move(pos, end_pos)
+
+  end
+
+  def test_redo()
+
+  end
+
+  def minimax(depth, isMaximisingPlayer)
+    return score if depth == 0
+    if isMaximisingPlayer
+      best_score = -9999;
+      pieces.select{|p| p.color == :black }.each do |piece|
+        piece.valid_moves.each do |to_pos|
+
+          origianl_pos = piece.pos
+          piece_in_spot_before = (self[to_pos].value == 0 ? empty_spot : self[to_pos])
+          self[to_pos] = piece
+          self[origianl_pos] = empty_spot
+          piece.pos = to_pos
+          best_score = [best_score, minimax(depth - 1, !isMaximisingPlayer)].max;
+          self[origianl_pos] = piece
+          piece.pos = origianl_pos
+          self[to_pos] = piece_in_spot_before
+          piece_in_spot_before.pos = to_pos
+        end
+      end
+      return best_score
+    else
+      best_score = 9999;
+      pieces.reject{|p| p.color == :white }.each do |piece|
+        piece.valid_moves.each do |to_pos|
+          origianl_pos = piece.pos
+          piece_in_spot_before = (self[to_pos].value == 0 ? empty_spot : self[to_pos])
+          self[to_pos] = piece
+          self[origianl_pos] = empty_spot
+          piece.pos = to_pos
+          best_score = [best_score, minimax(depth - 1, !isMaximisingPlayer)].min;
+          self[origianl_pos] = piece
+          piece.pos = origianl_pos
+          self[to_pos] = piece_in_spot_before
+          piece_in_spot_before.pos = to_pos
+        end
+      end
+      return best_score
+    end
+  end
+
+
+  def score
+    score = 0;
+    score = self.pieces.select{|p| p.color == :black}.reduce(0){|acc, p| acc + p.value }
+    score -= self.pieces.reject{|p| p.color == :black}.reduce(0){|acc, p| acc + p.value }
+    score
+  end
+
+  def test_check(pos, to_pos)
+    piece = self[pos]
+    piece_in_spot_before = (self[to_pos].value == 0 ? empty_spot : self[to_pos] )
+    self[to_pos] = piece
+    self[pos] = empty_spot
+    piece.pos = to_pos
+    checked = self.in_check?(piece.color) unless piece.color == :none
+    self[pos] = piece
+    piece.pos = pos
+    self[to_pos] = piece_in_spot_before
+    piece_in_spot_before.pos = to_pos
+    checked
+  end
 
 end
