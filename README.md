@@ -17,7 +17,7 @@ written for the command line
 
 ### how to play
 
-- navigate to the files root directory, run `ruby chess.rb` to begin the game.
+- navigate to the files root directory, run `ruby game.rb` to begin the game.
 - use the arrow keys or 'w' 's' 'a' 'd' to move the cursor.
 - space or enter to select or drop a playing piece.
 
